@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 export default function UploadFileZone(props) {
-    const { fileRejections, getInputProps, getRootProps, acceptedFileItems, style } = props;
+    const { onDrop, getInputProps, getRootProps, acceptedFileItems, style } = props;
     const fruitStatus = [
         {
             status: 'This fruit is very fresh and has been recently picked from the farm. Enjoy!',

@@ -1,5 +1,5 @@
 // assets
-import { IconTypography, IconPalette, IconShadow, IconWindmill, IconDashboard } from '@tabler/icons';
+import { IconTypography, IconPalette, IconShadow, IconWindmill, IconDashboard, IconUserCircle } from '@tabler/icons';
 
 // constant
 const icons = {
@@ -7,7 +7,8 @@ const icons = {
     IconPalette,
     IconShadow,
     IconWindmill,
-    IconDashboard
+    IconDashboard,
+    IconUserCircle
 };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
@@ -27,10 +28,10 @@ const dashboard = {
         },
         {
             id: 'util-typography',
-            title: 'Typography',
+            title: 'Profile',
             type: 'item',
             url: '/utils/util-typography',
-            icon: icons.IconTypography,
+            icon: icons.IconUserCircle,
             breadcrumbs: false
         }
         // {

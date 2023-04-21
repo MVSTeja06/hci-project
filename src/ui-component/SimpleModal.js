@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import * as React from 'react';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import UploadFileZone from './UploadFileZone';
 
@@ -41,16 +41,32 @@ const rejectStyle = {
 export default function SimpleModal({ open, setOpen, handleClickOpen }) {
     const handleClose = () => {
         setOpen(false);
+        clearFiles();
     };
+
+    const [filesInState, setFilesInState] = useState([]);
+
+    const onDrop = (acceptedFiles) => {
+        setFilesInState(acceptedFiles);
+    };
+
+    const clearFiles = () => {
+        setFilesInState([]);
+    };
+
+    console.log({ filesInState });
+    const acceptedFileItems = filesInState.map((file) => (
+        <li key={file.path}>
+            {/* {file.path} - {file.size} bytes */}
+            <img width={150} height={150} src={URL.createObjectURL(file)} alt="" />
+        </li>
+    ));
 
     const { acceptedFiles, fileRejections, getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } = useDropzone({
         accept: { 'image/*': [] },
         maxFiles: 1,
-        onFileDialogCancel: () => {
-            acceptedFiles = [];
-        }
+        onDropAccepted: onDrop
     });
-
     const style = useMemo(
         () => ({
             ...baseStyle,
@@ -60,17 +76,6 @@ export default function SimpleModal({ open, setOpen, handleClickOpen }) {
         }),
         [isFocused, isDragAccept, isDragReject]
     );
-    // const { acceptedFiles, fileRejections, getRootProps, getInputProps } = useDropzone({
-    //     maxFiles: 2
-    // });
-    console.log({ acceptedFiles });
-    const acceptedFileItems = acceptedFiles.map((file) => (
-        <li key={file.path}>
-            {/* {file.path} - {file.size} bytes */}
-            <img width={150} height={150} src={URL.createObjectURL(file)} alt="" />
-        </li>
-    ));
-
     // program to get a random item from an array
 
     return (
@@ -97,32 +102,8 @@ export default function SimpleModal({ open, setOpen, handleClickOpen }) {
                             getRootProps={getRootProps}
                             acceptedFileItems={acceptedFileItems}
                             style={style}
+                            onDrop={onDrop}
                         />
-                        {/* <FormControl sx={{ mt: 2, minWidth: 120 }}>
-                            <InputLabel htmlFor="max-width">maxWidth</InputLabel>
-                            <Select
-                                // autoFocus
-                                value={maxWidth}
-                                onChange={handleMaxWidthChange}
-                                label="maxWidth"
-                                inputProps={{
-                                    name: 'max-width',
-                                    id: 'max-width'
-                                }}
-                            >
-                                <MenuItem value={false}>false</MenuItem>
-                                <MenuItem value="xs">xs</MenuItem>
-                                <MenuItem value="sm">sm</MenuItem>
-                                <MenuItem value="md">md</MenuItem>
-                                <MenuItem value="lg">lg</MenuItem>
-                                <MenuItem value="xl">xl</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <FormControlLabel
-                            sx={{ mt: 1 }}
-                            control={<Switch checked={fullWidth} onChange={handleFullWidthChange} />}
-                            label="Full width"
-                        /> */}
                     </Box>
                 </DialogContent>
                 <DialogActions>
