@@ -1,21 +1,21 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 // material-ui
+import { Button, Grid, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Grid, MenuItem, TextField, Typography } from '@mui/material';
 
 // third-party
-import ApexCharts from 'apexcharts';
-import Chart from 'react-apexcharts';
 
 // project imports
-import SkeletonTotalGrowthBarChart from 'ui-component/cards/Skeleton/TotalGrowthBarChart';
-import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
+import MainCard from 'ui-component/cards/MainCard';
+import SkeletonTotalGrowthBarChart from 'ui-component/cards/Skeleton/TotalGrowthBarChart';
 
 // chart data
+import SimpleModal from 'ui-component/SimpleModal';
+import AnimateButton from 'ui-component/extended/AnimateButton';
 import chartData from './chart-data/total-growth-bar-chart';
 
 const status = [
@@ -84,10 +84,15 @@ const TotalGrowthBarChart = ({ isLoading }) => {
 
         // do not load chart when loading
         if (!isLoading) {
-            ApexCharts.exec(`bar-chart`, 'updateOptions', newChartData);
+            // ApexCharts.exec(`bar-chart`, 'updateOptions', newChartData);
         }
     }, [navType, primary200, primaryDark, secondaryMain, secondaryLight, primary, darkLight, grey200, isLoading, grey500]);
 
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
     return (
         <>
             {isLoading ? (
@@ -100,15 +105,12 @@ const TotalGrowthBarChart = ({ isLoading }) => {
                                 <Grid item>
                                     <Grid container direction="column" spacing={1}>
                                         <Grid item>
-                                            <Typography variant="subtitle2">Total Growth</Typography>
-                                        </Grid>
-                                        <Grid item>
-                                            <Typography variant="h3">$2,324.00</Typography>
+                                            <Typography variant="h3">Fruit Freshness Detection</Typography>
                                         </Grid>
                                     </Grid>
                                 </Grid>
                                 <Grid item>
-                                    <TextField
+                                    {/* <TextField
                                         id="standard-select-currency"
                                         select
                                         value={value}
@@ -119,12 +121,37 @@ const TotalGrowthBarChart = ({ isLoading }) => {
                                                 {option.label}
                                             </MenuItem>
                                         ))}
-                                    </TextField>
+                                    </TextField> */}
+                                    <AnimateButton>
+                                        <Button
+                                            disableElevation
+                                            fullWidth
+                                            size="large"
+                                            type="submit"
+                                            variant="contained"
+                                            color="secondary"
+                                            onClick={setOpen}
+                                        >
+                                            Upload Image
+                                        </Button>
+                                    </AnimateButton>
                                 </Grid>
                             </Grid>
                         </Grid>
+                        <SimpleModal open={open} setOpen={setOpen} handleClickOpen={handleClickOpen} />
+
                         <Grid item xs={12}>
-                            <Chart {...chartData} />
+                            {/* <Chart {...chartData} /> */}
+                            {/* <h2>Fruit Freshness Detection</h2> */}
+                            <Typography variant="body1" gutterBottom>
+                                This project is to develop an accurate fruit freshness detection system using OpenCV and Python. The system
+                                will be capable of determining the freshness of various fruits with high precision.
+                            </Typography>
+                            {/* <Typography variant="body1" gutterBottom>
+                                body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam
+                                beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti?
+                                Eum quasi quidem quibusdam.
+                            </Typography> */}
                         </Grid>
                     </Grid>
                 </MainCard>

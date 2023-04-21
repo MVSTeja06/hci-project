@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
 import {
     Box,
     Button,
@@ -20,10 +19,11 @@ import {
     Typography,
     useMediaQuery
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 // third party
-import * as Yup from 'yup';
 import { Formik } from 'formik';
+import * as Yup from 'yup';
 
 // project imports
 import useScriptRef from 'hooks/useScriptRef';
@@ -34,6 +34,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Google from 'assets/images/icons/social-google.svg';
+import { useNavigate } from 'react-router';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -55,6 +56,12 @@ const FirebaseLogin = ({ ...others }) => {
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
+    };
+    const navigate = useNavigate();
+
+    const handleSignUp = () => {
+        var to = '/dashboard/default';
+        navigate(to);
     };
 
     return (
@@ -131,8 +138,11 @@ const FirebaseLogin = ({ ...others }) => {
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
                         if (scriptedRef.current) {
-                            setStatus({ success: true });
-                            setSubmitting(false);
+                            setTimeout(() => {
+                                setStatus({ success: true });
+                                setSubmitting(false);
+                                handleSignUp();
+                            }, 2000);
                         }
                     } catch (err) {
                         console.error(err);
