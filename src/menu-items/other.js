@@ -1,5 +1,5 @@
 // assets
-import { IconBrandChrome, IconHelp } from '@tabler/icons';
+import { IconBrandChrome, IconHelp, IconUsers } from '@tabler/icons';
 
 // constant
 const icons = { IconBrandChrome, IconHelp };
@@ -12,20 +12,19 @@ const other = {
     children: [
         {
             id: 'sample-page',
-            title: 'Primary users',
+            title: 'Team members',
             type: 'item',
             url: '/sample-page',
-            icon: icons.IconBrandChrome,
+            icon: IconUsers,
             breadcrumbs: false
         },
         {
             id: 'documentation',
             title: 'Sponsors',
             type: 'item',
-            url: 'https://codedthemes.gitbook.io/berry/',
+            url: '/sponsors',
             icon: icons.IconHelp,
-            external: true,
-            target: true
+            breadcrumbs: false
         }
     ]
 };

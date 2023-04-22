@@ -3,7 +3,7 @@ import { lazy } from 'react';
 // project imports
 import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
-import ProfileSection from 'layout/MainLayout/Header/ProfileSection';
+
 import ProfilePage from 'views/utilities/ProfilePage';
 
 // dashboard routing
@@ -16,8 +16,10 @@ const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
 const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
 const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
 
-// sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
+
+// sample page routing
+const TeamPage = Loadable(lazy(() => import('views/team')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -85,6 +87,10 @@ const MainRoutes = {
         },
         {
             path: 'sample-page',
+            element: <TeamPage />
+        },
+        {
+            path: 'sponsors',
             element: <SamplePage />
         }
     ]

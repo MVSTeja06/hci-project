@@ -32,18 +32,6 @@ const ProfilePage = () => {
                                 color="inherit"
                             />
                         </Badge>
-                        {/* <Avatar
-                            src={User1}
-                            sx={{
-                                // ...theme.typography.extraLargeAvatar,
-                                // margin: '8px 0 8px 8px !important',
-                                width: 56,
-                                height: 56,
-                                cursor: 'pointer'
-                            }}
-                            aria-haspopup="true"
-                            color="inherit"
-                        /> */}
                     </SubCard>
                 </Grid>
                 <Grid item xs={12} sm={9}>
@@ -80,61 +68,6 @@ const ProfilePage = () => {
                         </Grid>
                     </SubCard>
                 </Grid>
-                {/* <Grid item xs={12} sm={6}>
-                    <SubCard title="Body">
-                        <Grid container direction="column" spacing={1}>
-                            <Grid item>
-                                <MuiTypography variant="body1" gutterBottom>
-                                    body1. Lorem ipsum dolor sit connecter adieu siccing eliot. Quos blanditiis tenetur unde suscipit, quam
-                                    beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat
-                                    deleniti? Eum quasi quidem quibusdam.
-                                </MuiTypography>
-                            </Grid>
-                            <Grid item>
-                                <MuiTypography variant="body2" gutterBottom>
-                                    body2. Lorem ipsum dolor sit connecter adieu siccing eliot. Quos blanditiis tenetur unde suscipit, quam
-                                    beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat
-                                    deleniti? Eum quasi quidem quibusdam.
-                                </MuiTypography>
-                            </Grid>
-                        </Grid>
-                    </SubCard>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <SubCard title="Extra">
-                        <Grid container direction="column" spacing={1}>
-                            <Grid item>
-                                <MuiTypography variant="button" display="block" gutterBottom>
-                                    button text
-                                </MuiTypography>
-                            </Grid>
-                            <Grid item>
-                                <MuiTypography variant="caption" display="block" gutterBottom>
-                                    caption text
-                                </MuiTypography>
-                            </Grid>
-                            <Grid item>
-                                <MuiTypography variant="overline" display="block" gutterBottom>
-                                    overline text
-                                </MuiTypography>
-                            </Grid>
-                            <Grid item>
-                                <MuiTypography
-                                    variant="body2"
-                                    color="primary"
-                                    component={Link}
-                                    href="https://berrydashboard.io"
-                                    target="_blank"
-                                    display="block"
-                                    underline="hover"
-                                    gutterBottom
-                                >
-                                    https://berrydashboard.io
-                                </MuiTypography>
-                            </Grid>
-                        </Grid>
-                    </SubCard>
-                </Grid> */}
             </Grid>
         </MainCard>
     );

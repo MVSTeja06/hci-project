@@ -11,7 +11,6 @@ const icons = {
 const pages = {
     id: 'pages',
     title: 'Sponsors',
-    // caption: 'Pages Caption',
     type: 'group',
     children: [
         {
