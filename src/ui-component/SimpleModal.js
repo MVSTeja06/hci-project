@@ -103,6 +103,7 @@ export default function SimpleModal({ open, setOpen, handleClickOpen }) {
                             acceptedFileItems={acceptedFileItems}
                             style={style}
                             onDrop={onDrop}
+                            filesInState={filesInState}
                         />
                     </Box>
                 </DialogContent>

@@ -32,6 +32,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
         borderRadius: '50%',
         top: -85,
         right: -95,
+        zIndex: -1,
         [theme.breakpoints.down('sm')]: {
             top: -105,
             right: -140
@@ -47,6 +48,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
         top: -125,
         right: -15,
         opacity: 0.5,
+
         [theme.breakpoints.down('sm')]: {
             top: -155,
             right: -70
@@ -143,7 +145,17 @@ const EarningCard = ({ isLoading }) => {
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                        <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                        <Typography
+                                            sx={{
+                                                fontSize: '2.125rem',
+                                                fontWeight: 500,
+                                                mr: 1,
+                                                mt: 1.75,
+                                                mb: 0.75,
+                                                zIndex: '2',
+                                                position: 'relative'
+                                            }}
+                                        >
                                             Welcome Madhubala !
                                         </Typography>
                                     </Grid>

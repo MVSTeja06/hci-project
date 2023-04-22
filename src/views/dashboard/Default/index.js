@@ -11,6 +11,7 @@ import TotalIncomeDarkCard from './TotalIncomeDarkCard';
 import TotalIncomeLightCard from './TotalIncomeLightCard';
 import TotalGrowthBarChart from './TotalGrowthBarChart';
 import { gridSpacing } from 'store/constant';
+import FruitsTable from './FruitsTable';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
@@ -19,6 +20,10 @@ const Dashboard = () => {
     useEffect(() => {
         setLoading(false);
     }, []);
+
+    const userAuth = localStorage.getItem('dashboard');
+    let isAdmin = userAuth == 'admin';
+    let isUser = userAuth == 'user';
 
     return (
         <Grid container spacing={gridSpacing}>
@@ -46,6 +51,9 @@ const Dashboard = () => {
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12} md={12}>
                         <TotalGrowthBarChart isLoading={isLoading} />
+                    </Grid>
+                    <Grid item xs={12} md={12}>
+                        {isAdmin && <FruitsTable />}
                     </Grid>
                     {/* <Grid item xs={12} md={4}>
                         <PopularCard isLoading={isLoading} />

@@ -69,7 +69,7 @@ const FirebaseRegister = ({ ...others }) => {
     const navigate = useNavigate();
 
     const handleSignUp = () => {
-        var to = '/pages/login/login3';
+        var to = '/login';
         navigate(to);
     };
 

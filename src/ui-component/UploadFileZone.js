@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 export default function UploadFileZone(props) {
-    const { onDrop, getInputProps, getRootProps, acceptedFileItems, style } = props;
+    const { onDrop, getInputProps, getRootProps, acceptedFileItems, style, filesInState } = props;
     const fruitStatus = [
         {
             status: 'This fruit is very fresh and has been recently picked from the farm. Enjoy!',
@@ -23,14 +23,16 @@ export default function UploadFileZone(props) {
 
     const [showStatus, setShowStatus] = useState(false);
     useEffect(() => {
-        if (acceptedFileItems.length === 0) {
+        if (filesInState.length === 0) {
             setShowStatus(false);
             handleFruitFreshStatus();
-        } else if (acceptedFileItems.length > 0) {
+        } else if (filesInState.length > 0) {
             setShowStatus(true);
             handleFruitFreshStatus();
         }
-    }, [acceptedFileItems]);
+    }, [JSON.stringify(filesInState)]);
+
+    console.log({ filesInState });
 
     return (
         <section className="container">
