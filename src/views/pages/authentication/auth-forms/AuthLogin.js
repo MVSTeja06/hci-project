@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
+
+import { Auth } from 'two-step-auth';
 
 // material-ui
 import {
@@ -54,6 +57,10 @@ const FirebaseLogin = ({ ...others }) => {
         setShowPassword(!showPassword);
     };
 
+    const [showOTP, setShowOTP] = useState(false);
+
+    const [validateOTP, setValidateOTP] = useState(false);
+
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
@@ -68,6 +75,7 @@ const FirebaseLogin = ({ ...others }) => {
         initialValues: {
             email: 'info@codedthemes.com',
             password: '123456',
+            otp: '',
             submit: null
         },
         validationSchema: Yup.object().shape({
@@ -94,16 +102,61 @@ const FirebaseLogin = ({ ...others }) => {
         }
     });
 
+    const handleSendOTP = async () => {
+        setValidateOTP(false);
+        const form = new FormData();
+        form.append('channel', '"email"');
+        form.append('email', values.email);
+        form.append('callback_url', '""');
+        form.append('success_redirect_url', '""');
+        form.append('fail_redirect_url', '""');
+        form.append('metadata', '"{}"');
+        form.append('captcha', '"true"');
+        form.append('hide', '"true"');
+        form.append('lang', '"en"');
+
+        try {
+            var myHeaders = new Headers();
+            myHeaders.append('Content-Type', 'application/json');
+
+            var raw = JSON.stringify({
+                email: values.email
+            });
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            const responseRaw = await fetch('http://localhost:4000/sendotp', requestOptions);
+
+            const response = await responseRaw.json();
+
+            console.log({ response });
+            setValidateOTP(true);
+            // submitForm();
+        } catch (error) {
+            console.error(error);
+            setValidateOTP(false);
+        }
+    };
     const handleSubmitForm = (loginType) => {
-        console.log({ loginType });
+        console.log({ loginType, otp: values.otp });
         if (loginType == 'user') {
             localStorage.setItem('dashboard', 'user');
         } else {
             localStorage.setItem('dashboard', 'admin');
         }
-
-        submitForm();
+        if (!values.otp && loginType == 'user') {
+            setShowOTP(true);
+            handleSendOTP();
+        } else {
+            submitForm();
+        }
     };
+
     return (
         <>
             <Grid container direction="column" justifyContent="center" spacing={2}>
@@ -218,6 +271,28 @@ const FirebaseLogin = ({ ...others }) => {
                         </FormHelperText>
                     )}
                 </FormControl>
+                {showOTP && (
+                    <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
+                        <FormControl fullWidth error={Boolean(touched.otp && errors.otp)} sx={{ ...theme.typography.customInput }}>
+                            <InputLabel htmlFor="outlined-adornment-otp-login">OTP</InputLabel>
+                            <OutlinedInput
+                                id="outlined-adornment-otp-login"
+                                type="text"
+                                value={values.otp}
+                                name="otp"
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                label="OTP"
+                                inputProps={{}}
+                            />
+                            {touched.otp && errors.otp && (
+                                <FormHelperText error id="standard-weight-helper-text-otp-login">
+                                    {errors.otp}
+                                </FormHelperText>
+                            )}
+                        </FormControl>
+                    </Stack>
+                )}
                 <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
                     <FormControlLabel
                         control={

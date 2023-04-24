@@ -11,28 +11,26 @@ export default function UploadFileZone(props) {
         { status: 'This fruit has gone bad.', color: 'red' }
     ];
     const [fruitStatusItem, setFruitStatusItem] = useState({});
-    function handleFruitFreshStatus() {
-        // get random index value
-        const randomIndex = Math.floor(Math.random() * fruitStatus.length);
-
-        // get random item
-        const item = fruitStatus[randomIndex];
-
-        setFruitStatusItem(item);
+    function handleFruitFreshStatus(name) {
+        if (name.toLowerCase().includes('fresh')) {
+            setFruitStatusItem(fruitStatus[0]);
+        } else {
+            setFruitStatusItem(fruitStatus[1]);
+        }
     }
 
     const [showStatus, setShowStatus] = useState(false);
     useEffect(() => {
         if (filesInState.length === 0) {
             setShowStatus(false);
-            handleFruitFreshStatus();
+            // handleFruitFreshStatus(filesInState[0].name || '');
         } else if (filesInState.length > 0) {
             setShowStatus(true);
-            handleFruitFreshStatus();
+            handleFruitFreshStatus(filesInState[0].name);
         }
     }, [JSON.stringify(filesInState)]);
 
-    console.log({ filesInState });
+    console.log({ filesInState, fruitStatusItem });
 
     return (
         <section className="container">

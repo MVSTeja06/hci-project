@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import Avan from 'assets/images/users/avantika.jpeg';
+import Manasa from 'assets/images/users/manasa.jpeg';
 // material-ui
 import {
     Avatar,
@@ -25,7 +26,7 @@ import { useTheme } from '@mui/material/styles';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 // project imports
-import User1 from 'assets/images/users/user-round.svg';
+
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
 import UpgradePlanCard from './UpgradePlanCard';
@@ -84,6 +85,10 @@ const ProfileSection = () => {
         prevOpen.current = open;
     }, [open]);
 
+    const userAuth = localStorage.getItem('dashboard');
+    let isAdmin = userAuth == 'admin';
+    let isUser = userAuth == 'user';
+
     return (
         <>
             <Chip
@@ -108,7 +113,7 @@ const ProfileSection = () => {
                 }}
                 icon={
                     <Avatar
-                        src={User1}
+                        src={isAdmin ? Manasa : Avan}
                         sx={{
                             ...theme.typography.mediumAvatar,
                             margin: '8px 0 8px 8px !important',
@@ -156,11 +161,11 @@ const ProfileSection = () => {
                                             <Stack direction="row" spacing={0.5} alignItems="center">
                                                 <Typography variant="h4">Good Morning,</Typography>
                                                 <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
-                                                    Johne Doe
+                                                    {isAdmin ? 'Manasa V' : 'Avantika Mittapally'}
                                                 </Typography>
                                             </Stack>
                                             <Typography sx={{ py: 2 }} variant="subtitle2">
-                                                Project Admin
+                                                {isAdmin ? 'Project Admin' : 'User'}
                                             </Typography>
                                         </Stack>
                                         {/* <OutlinedInput
@@ -183,7 +188,7 @@ const ProfileSection = () => {
                                     </Box>
                                     <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
                                         <Box sx={{ px: 2 }}>
-                                            <UpgradePlanCard />
+                                            {/* <UpgradePlanCard /> */}
                                             {/* <Divider />
                                             <Card
                                                 sx={{
@@ -227,7 +232,7 @@ const ProfileSection = () => {
                                                     </Grid>
                                                 </CardContent>
                                             </Card> */}
-                                            <Divider />
+                                            {/* <Divider /> */}
                                             <List
                                                 component="nav"
                                                 sx={{

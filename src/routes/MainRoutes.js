@@ -88,11 +88,11 @@ const MainRoutes = {
         {
             path: 'sample-page',
             element: <TeamPage />
-        },
-        {
-            path: 'sponsors',
-            element: <SamplePage />
         }
+        // {
+        //     path: 'sponsors',
+        //     element: <SamplePage />
+        // }
     ]
 };
 

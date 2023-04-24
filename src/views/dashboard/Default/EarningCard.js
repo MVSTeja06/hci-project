@@ -71,6 +71,9 @@ const EarningCard = ({ isLoading }) => {
         setAnchorEl(null);
     };
 
+    const userAuth = localStorage.getItem('dashboard');
+    let isAdmin = userAuth == 'admin';
+
     return (
         <>
             {isLoading ? (
@@ -82,7 +85,7 @@ const EarningCard = ({ isLoading }) => {
                             <Grid item>
                                 <Grid container justifyContent="space-between">
                                     <Grid item>
-                                        <Avatar
+                                        {/* <Avatar
                                             variant="rounded"
                                             sx={{
                                                 ...theme.typography.commonAvatar,
@@ -92,7 +95,7 @@ const EarningCard = ({ isLoading }) => {
                                             }}
                                         >
                                             <img src={EarningIcon} alt="Notification" />
-                                        </Avatar>
+                                        </Avatar> */}
                                     </Grid>
                                     <Grid item>
                                         <Avatar
@@ -156,10 +159,10 @@ const EarningCard = ({ isLoading }) => {
                                                 position: 'relative'
                                             }}
                                         >
-                                            Welcome Madhubala !
+                                            {isAdmin ? 'Welcome Manasa !' : 'Welcome Avantika'}
                                         </Typography>
                                     </Grid>
-                                    <Grid item>
+                                    {/* <Grid item>
                                         <Avatar
                                             sx={{
                                                 cursor: 'pointer',
@@ -170,7 +173,7 @@ const EarningCard = ({ isLoading }) => {
                                         >
                                             <ArrowUpwardIcon fontSize="inherit" sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }} />
                                         </Avatar>
-                                    </Grid>
+                                    </Grid> */}
                                 </Grid>
                             </Grid>
                             <Grid item sx={{ mb: 1.25 }}>
@@ -181,7 +184,7 @@ const EarningCard = ({ isLoading }) => {
                                         color: theme.palette.secondary[200]
                                     }}
                                 >
-                                    Total Earning
+                                    How's your day today ?
                                 </Typography>
                             </Grid>
                         </Grid>

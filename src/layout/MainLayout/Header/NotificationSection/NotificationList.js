@@ -19,7 +19,9 @@ import {
 
 // assets
 import { IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto } from '@tabler/icons';
-import User1 from 'assets/images/users/user-round.svg';
+import Avan from 'assets/images/users/avantika.jpeg';
+
+import Manasa from 'assets/images/users/manasa.jpeg';
 
 // styles
 const ListItemWrapper = styled('div')(({ theme }) => ({
@@ -62,6 +64,9 @@ const NotificationList = () => {
         height: 28
     };
 
+    const userAuth = localStorage.getItem('dashboard');
+    let isAdmin = userAuth == 'admin';
+
     return (
         <List
             sx={{
@@ -86,9 +91,9 @@ const NotificationList = () => {
             <ListItemWrapper>
                 <ListItem alignItems="center">
                     <ListItemAvatar>
-                        <Avatar alt="John Doe" src={User1} />
+                        <Avatar alt={isAdmin ? 'Manasa V' : 'Avantika Mittapally'} src={isAdmin ? Manasa : Avan} />
                     </ListItemAvatar>
-                    <ListItemText primary="John Doe" />
+                    <ListItemText primary={isAdmin ? 'Manasa V' : 'Avantika Mittapally'} />
                     <ListItemSecondaryAction>
                         <Grid container justifyContent="flex-end">
                             <Grid item xs={12}>
@@ -199,9 +204,9 @@ const NotificationList = () => {
             <ListItemWrapper>
                 <ListItem alignItems="center">
                     <ListItemAvatar>
-                        <Avatar alt="John Doe" src={User1} />
+                        <Avatar alt={isAdmin ? 'Manasa V' : 'Avantika Mittapally'} src={isAdmin ? Manasa : Avan} />
                     </ListItemAvatar>
-                    <ListItemText primary={<Typography variant="subtitle1">John Doe</Typography>} />
+                    <ListItemText primary={<Typography variant="subtitle1">{isAdmin ? 'Manasa V' : 'Avantika Mittapally'}</Typography>} />
                     <ListItemSecondaryAction>
                         <Grid container justifyContent="flex-end">
                             <Grid item xs={12}>
@@ -249,9 +254,9 @@ const NotificationList = () => {
             <ListItemWrapper>
                 <ListItem alignItems="center">
                     <ListItemAvatar>
-                        <Avatar alt="John Doe" src={User1} />
+                        <Avatar alt={isAdmin ? 'Manasa V' : 'Avantika Mittapally'} src={isAdmin ? Manasa : Avan} />
                     </ListItemAvatar>
-                    <ListItemText primary={<Typography variant="subtitle1">John Doe</Typography>} />
+                    <ListItemText primary={<Typography variant="subtitle1">{isAdmin ? 'Manasa V' : 'Avantika Mittapally'}</Typography>} />
                     <ListItemSecondaryAction>
                         <Grid container justifyContent="flex-end">
                             <Grid item xs={12}>

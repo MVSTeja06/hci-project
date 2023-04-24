@@ -20,6 +20,10 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
+    const userAuth = localStorage.getItem('dashboard');
+    let isAdmin = userAuth == 'admin';
+    let isUser = userAuth == 'user';
+
     const drawer = (
         <>
             <Box sx={{ display: { xs: 'block', md: 'none' } }}>
@@ -37,13 +41,13 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
                     }}
                 >
                     <MenuList />
-                    <MenuCard />
+                    {/* {!isAdmin && <MenuCard />} */}
                 </PerfectScrollbar>
             </BrowserView>
             <MobileView>
                 <Box sx={{ px: 2 }}>
                     <MenuList />
-                    <MenuCard />
+                    {/* {!isAdmin && <MenuCard />} */}
                 </Box>
             </MobileView>
         </>
